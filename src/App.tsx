@@ -24,7 +24,6 @@ export default function App() {
     findStr: "",
     replaceStr: "",
     casing: "none",
-    scale: 1,
   });
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -99,7 +98,6 @@ export default function App() {
     formData.append("image", fileRec.originalFile);
     formData.append("targetFormat", settings.targetFormat);
     formData.append("quality", String(settings.quality));
-    formData.append("scale", String(settings.scale || 1));
 
     const response = await fetch("/api/convert", {
       method: "POST",

@@ -60,25 +60,6 @@ export function SettingsPanel({ settings, setSettings }: SettingsPanelProps) {
           </div>
         )}
 
-        <div className="pt-2">
-          <label className="text-[10px] font-medium opacity-50 uppercase block mb-2">图片缩放倍数</label>
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((scaleOption) => (
-              <button
-                key={scaleOption}
-                onClick={() => handleSettingChange('scale', scaleOption)}
-                className={cn(
-                  "h-9 text-xs border transition-colors font-medium",
-                  settings.scale === scaleOption
-                    ? "border-black bg-black text-white"
-                    : "border-[#D1D1CB] text-[#1A1A1A] hover:border-black"
-                )}
-              >
-                {scaleOption}x
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       <div className="space-y-4">

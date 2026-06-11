@@ -6,7 +6,6 @@ export type AppSettings = {
   findStr: string;
   replaceStr: string;
   casing: 'none' | 'capitalizeFirst' | 'titleCase' | 'upper' | 'lower';
-  scale: 1 | 2 | 3 | 4;
 };
 
 export type FileStatus = 'pending' | 'processing' | 'done' | 'error';

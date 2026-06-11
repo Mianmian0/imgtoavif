@@ -25,22 +25,10 @@ async function startServer() {
       const buffer = req.file.buffer;
       const targetFormat = req.body.targetFormat || "image/avif";
       const quality = parseFloat(req.body.quality) || 0.8;
-      const scale = parseInt(req.body.scale) || 1;
 
       const sharpQuality = Math.max(1, Math.min(100, Math.round(quality * 100)));
 
       let pipeline = sharp(buffer);
-
-      if (scale !== 1) {
-        const metadata = await pipeline.metadata();
-        if (metadata.width && metadata.height) {
-          pipeline = pipeline.resize({
-            width: Math.round(metadata.width * scale),
-            height: Math.round(metadata.height * scale),
-            fit: 'fill'
-          });
-        }
-      }
 
       let outBuffer;
       if (targetFormat === "image/avif") {
