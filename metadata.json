@@ -1,0 +1,6 @@
+{
+  "name": "Avified 图像转换器",
+  "description": "本地批量图像格式转换工具，支持AVIF与常见格式互转及批量重命名。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
