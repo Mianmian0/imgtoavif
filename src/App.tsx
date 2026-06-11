@@ -215,14 +215,18 @@ export default function App() {
 
       if (mode === 'replace') {
         if (!sourceDirHandle) {
-          alert("由于您是拖拽上传或选择的文件，因此我们没有原文件夹的写入权限。请使用“平移到新文件夹”。");
-          return;
-        }
-        destDirHandle = sourceDirHandle;
-        if ((await destDirHandle.queryPermission({ mode: 'readwrite' })) !== 'granted') {
-          if ((await destDirHandle.requestPermission({ mode: 'readwrite' })) !== 'granted') {
-            console.log("Write permission denied for source directory");
-            return;
+          const userConfirmed = window.confirm("由于您之前是拖拽上传或选择的文件，我们没有原文件夹的写入权限。\n\n请在接下来的对话框中选择包含这些原文件的根文件夹以继续替换。");
+          if (!userConfirmed) return;
+          // @ts-ignore
+          destDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+          setSourceDirHandle(destDirHandle);
+        } else {
+          destDirHandle = sourceDirHandle;
+          if ((await destDirHandle.queryPermission({ mode: 'readwrite' })) !== 'granted') {
+            if ((await destDirHandle.requestPermission({ mode: 'readwrite' })) !== 'granted') {
+              console.log("Write permission denied for source directory");
+              return;
+            }
           }
         }
       } else {
