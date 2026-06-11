@@ -15,6 +15,7 @@ export type ImageFile = {
   originalFile: File;
   originalName: string;
   newName: string;
+  relativePath: string;
   status: FileStatus;
   blob?: Blob;
   error?: string;
